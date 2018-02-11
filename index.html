@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Pool Tracker</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+	</script>
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<!--main CSS file-->
+<link href="css/main.css" rel="stylesheet">
+
+
+<script>
+ $( function() {
+   $( "#selectable" ).selectable();
+ } );
+ </script>
+<script>
+$(document).ready(function() {
+
+var launchPad = $(".launchPad").clone();
+$("[name='reset']").click(function(){
+$("#dropZone .stackDrop").empty();
+$(".launchPad").html(launchPad.html());
+listenToDragable();
+});
+listenToDragable();
+function listenToDragable(){
+  $(".card").draggable({
+    appendTo: "body",
+    cursor: "move",
+    helper: 'clone',
+    revert: "invalid",
+  });
+
+  $(".launchPad").droppable({
+    tolerance: "intersect",
+    accept: ".card",
+    drop: function(event, ui) {
+      $(this).append($(ui.draggable));
+    }
+  });
+
+  $(".stackDrop").droppable({
+    tolerance: "intersect",
+    accept: ".card",
+    drop: function(event, ui) {
+      $(this).append($(ui.draggable));
+    }
+  });
+}
+});
+
+</script>
+</head>
+
+<body>
+	<div class="jumbotron"><h3 class="text-center">Pool Tracker</h3></div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+<div class="launchPad">
+  <h6>All Players:</h6>
+    <div class="card">Paulie</div>
+    <div class="card">Tony</div>
+    <div class="card">Chrissy</div>
+    <div class="card">Silvio</div>
+    <div class="card">Uncle Junior</div>
+  </div>
+  </div>
+  <div class="col">
+   <h5>Current Players:</h5> 
+    <p class="text-muted">Click and Drag two players here:</p>
+  <div id="dropZone">
+    <div class="stack">
+      <div class="stackDrop"></div>
+    </div>
+    <input type="button" name="reset" value="RESET" />
+  </div>
+  </div>
+
+</div><!--end of row-->
+
+</div><!--end of first container-->
+<hr>
+
+<div class="container">
+<div class="row">
+<div class="col">
+<div ng-app="">
+		 	<label>Paulie's Wins</label>
+		 	<input style="color: black;" type="number" ng-model="paul">
+      <p>Paulie's Total Wins <span ng-bind="paul"></span></p>
+		 	<label>Tony's Wins</label>
+		 	<input style="color: black;" type="number" ng-model="tony">
+      <p>Tony's Total Wins <span ng-bind="tony"></span></p>
+
+		 	<label>Chrissy's Wins</label>
+		 	<input style="color: black;" type="number" ng-model="chris">
+<p>Chrissy's Total Wins <span ng-bind="chris"></span></p>
+
+		 	<label>Silvio's Wins</label>
+		 	<input style="color: black;" type="number" ng-model="sil">
+<p>Sil's Total Wins <span ng-bind="sil"></span></p>
+
+		 	<label>Junior's Wins</label>
+		 	<input style="color: black;" type="number" ng-model="jun">
+<p>Junior's Total Wins <span ng-bind="jun"></span></p>
+ 			 </div><!--end of ng-app-->
+ 			 </div><!--end of ng-app col-->
+
+ 	<div class="col">
+ 				 <h5>Current Winner:</h5>
+ 				 <p class="text-muted">Click Players name with the most wins to declare them the winner.</p>
+ 			
+  <div class="box">
+    <div class="top">
+      Paulie
+    </div>
+    <div class="bottom">
+      Paulie is The current Winner
+    </div>
+  </div>
+  <span><div class="box">
+    <div class="top">
+      Chrissy
+    </div>
+    <div class="bottom">
+      Chrissy is the current winner
+    </div>
+  </div></span>
+  <div class="box">
+    <div class="top">
+      Chrissy
+    </div>
+    <div class="bottom">
+      Chrissy is the current winner
+    </div>
+  </div>
+  <div class="box">
+    <div class="top">
+      Silvio
+    </div>
+    <div class="bottom">
+      Silvio is the current winner
+    </div>
+  </div>
+  <div class="box">
+    <div class="top">
+      Junior
+    </div>
+    <div class="bottom">
+      Uncle Junior is the current winner
+    </div>
+  </div>
+
+ 			
+ 		
+<script>
+		$('.top').on('click', function() {
+	$parent_box = $(this).closest('.box');
+	$parent_box.siblings().find('.bottom').hide();
+	$parent_box.find('.bottom').toggle();
+});
+			</script>
+ 		
+ 	
+ 	</div>
+  
+</div>
+</div>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	</body>
+</html>
